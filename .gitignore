@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Ignore DataSet
+data/
+
 # C extensions
 *.so
 
