@@ -1,0 +1,5 @@
+qsub -I -l select=1:ncpus=24:mem=125gb:ngpus=2:gpu_model=k40:interconnect=10ge,walltime=72:00:00
+module purge
+module load anaconda3/2019.10-gcc/8.3.1 cuda/11.0.3-gcc/7.5.0 cudnn/8.0.0.180-11.0-linux-x64-gcc/7.5.0 nccl/2.7.3-1-gcc/8.3.1-cuda10_2 openmpi/4.0.5-gcc/8.3.1-ucx fftw/3.3.8-gcc/8.4.1-mpi ffmpeg/4.2.2-gcc/8.3.1 opencv/4.2.0-gcc/8.3.1-openmp-cuda10_2-nvidia_K
+source ~/software/venv/tf1_gpu/bin/activate
+
