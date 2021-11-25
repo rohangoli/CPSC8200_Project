@@ -1,3 +1,4 @@
+## Purpose: ResNetv50 Training in serial execution
 ## Import required Modules
 import tensorflow as tf
 from tensorflow.keras import layers

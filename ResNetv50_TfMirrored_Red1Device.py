@@ -1,6 +1,5 @@
-## Purpose: ResNetv50 Training using TF Distributed Strategy using NCCL AllReduce
-## Default Mirror Strategy : tf.distribute.NcclAllReduce
-
+## Purpose: ResNetv50 Training using TF Distributed Strategy using Hierarchical Copy All Reduce
+## Mirror Strategy : tf.distribute.ReductionToOneDevice
 ## Include required modules
 import tensorflow as tf
 from tensorflow.keras import layers
@@ -36,7 +35,7 @@ devices = tf.config.experimental.list_physical_devices(device_type)
 devices_names = [d.name.split("e:")[1] for d in devices]
 
 ## Declare Strategy
-strategy = tf.distribute.MirroredStrategy(devices=devices_names[:n_gpus])
+strategy = tf.distribute.MirroredStrategy(devices=devices_names[:n_gpus],cross_device_ops=tf.distribute.ReductionToOneDevice())
 
 ## Declare and Compile model in the scope of strategy
 with strategy.scope():

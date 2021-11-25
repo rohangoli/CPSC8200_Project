@@ -1,0 +1,97 @@
+Python with C: https://realpython.com/python-bindings-overview/
+RDMA over ML/DL and Big Data Frameworks : https://www.sc-asia.org/2018/wp-content/uploads/2018/03/1_1500_Ido_Shamay.pdf
+https://github.com/agrippa/shmem_ml/tree/master/src/shmem_ml
+
+https://github.com/NVIDIA/df-nvshmem-prototype
+https://docs.nvidia.com/hpc-sdk/nvshmem/archives/nvshmem-101/developer-guide/index.html
+https://developer.nvidia.com/blog/scaling-scientific-computing-with-nvshmem/
+https://developer.nvidia.com/blog/accelerating-nvshmem-2-0-team-based-collectives-using-nccl/
+https://docs.nvidia.com/hpc-sdk/nvshmem/api/docs/introduction.html#key-features
+
+PyTorch with MPI
+https://pytorch.org/tutorials/intermediate/dist_tuto.html
+https://yuqli.github.io/jekyll/update/2018/12/17/sgd-mpi-pytorch.html
+https://github.com/yuqli/hpc/blob/master/lab4/src/lab4_multiplenode.py
+
+SGD with MPI
+https://github.com/cemo91/sgd-mpi/tree/master/code
+
+SGD CUDA
+https://dsharpc.github.io/SGD/
+https://github.com/thvasilo/cuda-sgd-sese-project
+
+PySHMEM
+https://cpb-us-e1.wpmucdn.com/you.stonybrook.edu/dist/6/1671/files/2016/06/aaron2015pyshmem-1dxxvxn.pdf
+
+Horovod
+https://github.com/horovod/horovod/blob/master/docs/mpi.rst
+https://github.com/horovod/horovod/blob/master/docs/gpus.rst
+
+https://cloudxlab.com/blog/writing-custom-optimizer-in-tensorflow-and-keras/
+
+Building Tensorflow
+https://pgaleone.eu/tensorflow/bazel/abi/c++/2021/04/01/tensorflow-custom-ops-bazel-abi-compatibility/
+
+Build and Train Neural Network with Tensorflow C++
+https://medium.com/@htmbx6/build-and-train-neural-network-with-tensorflow-c-f13f22d3c5b6
+https://github.com/tho15/tfplusplus
+
+TO READ:
+https://analyticsindiamag.com/hands-on-guide-to-custom-training-with-tensorflow-strategy/
+https://www.run.ai/guides/multi-gpu/tensorflow-multi-gpu-strategies-and-tutorials/
+	0. Notes on Deel learning with Multiple GPUs
+	1. Distribution Strategy API With TensorFlow Estimator
+	2. Horovod
+	3. Distributed Training Strategies with TensorFlow
+		Mirrored Strategy
+		TPU Strategy
+		Multi Worker Mirrored Strategy
+		Central Storage Strategy
+		Parameter Server Strategy
+https://github.com/baidu-research/baidu-allreduce/blob/master/collectives.cu
+	1. Ring-AllReduce Algorithm
+https://codeclimate.com/github/tensorflow/tensorflow/tensorflow/python/distribute/distribute_lib.py/source
+https://www.oreilly.com/content/distributed-tensorflow/
+	1. tensorflow.contrib.mpi_collectives (contributed by Baidu) and Uber’s Horovod, built on Nvidia’s NCCL 2 library.
+	2. Deep learning hierarchy of scale
+	3. Horovod + Drawback(Fault tolerance)
+	4. TensorFlow on Spark
+	5. TensorFlow Distributed
+	6. Parallel Experiments(Model Parallelism)
+	7. Data parallelism
+	8. Ring-All Reduce & Parameter-Server Architectures
+	9. Asynchronous vs Synchronous SGD
+	10. https://github.com/hopshadoop/distributed-tf
+	11. https://github.com/horovod/horovod + Try with TF 1.4
+
+IMP:
+https://www.logicalclocks.com/blog/goodbye-horovod-hello-collectiveallreduce
+https://developer.nvidia.com/blog/massively-scale-deep-learning-training-nccl-2-4/
+https://github.com/NVIDIA/nccl/tree/master/src
+https://github.com/NVIDIA/nccl/blob/911d61f214d45c98df1ee8c0ac23c33fb94b63de/src/graph/trees.cc
+https://github.com/NVIDIA/nccl/blob/911d61f214d45c98df1ee8c0ac23c33fb94b63de/src/collectives/all_reduce.cc
+https://github.com/NVIDIA/nccl-tests
+
+https://towardsdatascience.com/distributed-deep-learning-with-horovod-2d1eea004cb2
+https://towardsdatascience.com/train-a-neural-network-on-multi-gpu-with-tensorflow-42fa5f51b8af
+https://github.com/jorditorresBCN/SA-MIRI-2020
+
+TODO:
+Collective Communication NCCL through TensorFlow
+https://docs.databricks.com/_static/notebooks/deep-learning/spark-tensorflow-distributor.html
+		1. https://github.com/tensorflow/tensorflow/blob/87462bfac761435a46641ff2f10ad0b6e5414a4b/tensorflow/python/distribute/collective_util.py
+		2.  strategy = tf.distribute.experimental.MultiWorkerMirroredStrategy(tf.distribute.experimental.CollectiveCommunication.NCCL)
+		3. https://www.tensorflow.org/versions/r2.4/api_docs/python/tf/distribute/experimental/CommunicationImplementation
+			AUTO: Automatically chosen by Tensorflow.
+			RING: TensorFlow's ring algorithms for all-reduce and all-gather.
+			NCCL: NVIDIA®'s NCCL library. This is now only used for all-reduce on GPUs; all-reduce on CPU, all-gather and broadcast fallbacks to RING.
+https://pretagteam.com/question/tensorflow-multigpu-nccl
+https://www.tensorflow.org/api_docs/python/tf/distribute/NcclAllReduce
+https://www.tensorflow.org/api_docs/python/tf/distribute/CrossDeviceOps
+https://www.tensorflow.org/api_docs/python/tf/distribute/ReductionToOneDevice
+https://www.tensorflow.org/api_docs/python/tf/distribute/HierarchicalCopyAllReduce
+Explore NV SHMEM through TensorFlow
+
+========================================================================================================================================================
+To Learn:
+Hierarchical AllReduce communication as a hybrid method with the Ring-AllReduce at one end and Rabenseifner’s Algorithm

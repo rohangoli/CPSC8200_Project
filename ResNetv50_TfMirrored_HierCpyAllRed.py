@@ -1,5 +1,9 @@
-## Purpose: ResNetv50 Training using TF Distributed Strategy using NCCL AllReduce
-## Default Mirror Strategy : tf.distribute.NcclAllReduce
+## Purpose: ResNetv50 Training using TF Distributed Strategy using Hierarchical Copy All Reduce
+## Mirror Strategy : tf.distribute.HierarchicalCopyAllReduce
+
+# It reduces to one GPU along edges in some hierarchy and broadcasts back to each GPU along the same path. For the batch API, tensors will be repacked or aggregated for more efficient cross-device transportation.
+
+# This is a reduction created for Nvidia DGX-1 which assumes GPUs connects like that on DGX-1 machine. If you have different GPU inter-connections, it is likely that it would be slower than tf.distribute.ReductionToOneDevice.
 
 ## Include required modules
 import tensorflow as tf
@@ -36,7 +40,7 @@ devices = tf.config.experimental.list_physical_devices(device_type)
 devices_names = [d.name.split("e:")[1] for d in devices]
 
 ## Declare Strategy
-strategy = tf.distribute.MirroredStrategy(devices=devices_names[:n_gpus])
+strategy = tf.distribute.MirroredStrategy(devices=devices_names[:n_gpus],cross_device_ops=tf.distribute.HierarchicalCopyAllReduce())
 
 ## Declare and Compile model in the scope of strategy
 with strategy.scope():
